@@ -1,0 +1,11 @@
+{
+  "name": "claude-toolkit-marketplace",
+  "owner": { "name": "jersgcodes" },
+  "plugins": [
+    {
+      "name": "claude-toolkit",
+      "source": ".",
+      "description": "Design, planning, research, review, and quality skills for Claude Code — usable on CLI, web, and mobile."
+    }
+  ]
+}
