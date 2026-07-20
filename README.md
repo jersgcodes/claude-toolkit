@@ -33,6 +33,13 @@ Skills tagged **[CLI-only]** in their description depend on a local terminal (gi
 | Remote MCP servers | ✅ | ✅ | ✅ |
 | Hooks (local automation) | ✅ | — | — |
 
+## Use outside Claude Code (ChatGPT, Codex, other LLMs)
+
+The skills are portable markdown — only Claude Code auto-invokes them, but you can load them
+elsewhere. See **[`exports/`](exports/)**:
+- `chatgpt-knowledge-bundle.md` + `chatgpt-system-instructions.md` → set up a ChatGPT **Custom GPT** or **Project** loaded with all 52 skills.
+- `AGENTS.md` → template for Codex / Cursor / other `AGENTS.md`-based tools.
+
 ## License
 
 MIT
