@@ -1,8 +1,10 @@
 ---
 name: format
-description: [CLI-only] Auto-format code in the current project.
+description: [CLI-only] Auto-format code in the current project. Use when code style is inconsistent or before committing — "format my code", "run prettier", "fix formatting".
+allowed-tools: [Bash, Read, Glob]
 version: 0.1.0
 ---
+
 
 
 Auto-format code in the current project. Do the following steps in order:

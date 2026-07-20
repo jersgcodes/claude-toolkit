@@ -1,8 +1,10 @@
 ---
 name: threat-model
 description: STRIDE threat model for a feature or system. Maps data flows, identifies threats per component, suggests mitigations. Outputs to docs/threats/.
+allowed-tools: [Read, Glob, Grep, Write]
 version: 0.1.0
 ---
+
 
 
 # Threat Model

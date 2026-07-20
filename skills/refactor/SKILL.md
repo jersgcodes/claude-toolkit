@@ -1,8 +1,10 @@
 ---
 name: refactor
 description: Smell-driven, test-guarded refactoring (Fowler). Identifies code smells and proposes named transformations that preserve behavior.
+allowed-tools: [Read, Glob, Grep, Bash]
 version: 0.1.0
 ---
+
 
 
 # Refactor

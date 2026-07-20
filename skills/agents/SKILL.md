@@ -1,8 +1,10 @@
 ---
 name: agents
-description: [CLI-only] List all available Claude Code agent types and explain when to use each one.
+description: [CLI-only] List all available Claude Code agent types and when to use each — invoke when asked about agents, subagents, which agent to use, or how to parallelise tasks.
+allowed-tools: [Glob]
 version: 0.1.0
 ---
+
 
 
 List all available Claude Code agent types and explain when to use each one. Do the following steps in order:

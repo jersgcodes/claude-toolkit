@@ -1,8 +1,10 @@
 ---
 name: schema-design
 description: Design a database schema before writing migrations. Covers entity modeling, normalization, indexing, migration safety, and SQLite-specific patterns.
+allowed-tools: [Read, Glob, Grep, Write, Bash]
 version: 0.1.0
 ---
+
 
 
 # Schema Design

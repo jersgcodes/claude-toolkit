@@ -1,8 +1,10 @@
 ---
 name: component-design
 description: Design a UI component's API before writing code. Props shape, state vs derived, composition, slots, controlled vs uncontrolled, and empty/error/loading state checklist.
+allowed-tools: [Read, Glob, Grep, Write]
 version: 0.1.0
 ---
+
 
 
 # Component Design

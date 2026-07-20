@@ -1,8 +1,10 @@
 ---
 name: pre-approve
-description: [CLI-only] Before starting a build session, surface all tool uses and permissions needed so the user can pre-approve them in one go.
+description: [CLI-only] Before starting a build, surface all tool uses and permissions needed for one-go pre-approval. Use when you want to approve all tool calls upfront.
+allowed-tools: [Read, Glob, Grep, Write, Bash]
 version: 0.1.0
 ---
+
 
 
 Before starting a build session, surface all tool uses and permissions needed so the user can pre-approve them in one go.

@@ -1,8 +1,10 @@
 ---
 name: test-coverage
-description: [CLI-only] Identify untested code paths and suggest test cases.
+description: [CLI-only] Identify untested code paths and suggest test cases. Use when checking coverage gaps, before a PR, or when tests feel thin.
+allowed-tools: [Bash, Read, Grep, Glob]
 version: 0.1.0
 ---
+
 
 
 Identify untested code paths and suggest test cases. Do the following steps in order:

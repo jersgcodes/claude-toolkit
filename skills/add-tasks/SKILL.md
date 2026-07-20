@@ -1,8 +1,10 @@
 ---
 name: add-tasks
-description: [CLI-only] Review the current conversation and extract actionable tasks into two categories: system/build tasks (things to code or configure) and user tasks (things the user needs to do or decide). Then write them to a TASKS_CURRENT.md file in the project root.
+description: [CLI-only] Extract and write actionable tasks from the current conversation into TASKS_CURRENT.md — use when wrapping up a session, after a planning discussion, or when asked to capture next steps or to-dos.
+allowed-tools: [Read, Write]
 version: 0.1.0
 ---
+
 
 
 Review the current conversation and extract actionable tasks into two categories: system/build tasks (things to code or configure) and user tasks (things the user needs to do or decide). Then write them to a TASKS_CURRENT.md file in the project root.

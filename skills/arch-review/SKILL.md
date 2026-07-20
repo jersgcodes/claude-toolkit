@@ -1,8 +1,10 @@
 ---
 name: arch-review
-description: Review the codebase architecture to identify modularisation opportunities and reduce context wastage when working with Claude.
+description: Review codebase architecture for modularisation opportunities and Claude context efficiency — use when the project feels bloated, files are getting large, or before a major refactor.
+allowed-tools: [Read, Grep, Glob, Bash, Write, Edit]
 version: 0.1.0
 ---
+
 
 
 Review the codebase architecture to identify modularisation opportunities and reduce context wastage when working with Claude. Do the following steps in order:

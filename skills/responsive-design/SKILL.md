@@ -1,8 +1,10 @@
 ---
 name: responsive-design
 description: Plan responsive behavior before writing layout code. Breakpoint strategy, mobile-first thinking, fluid type, container queries, content reflow. Pre-build companion to /mobile-audit.
+allowed-tools: [Read, Glob, Grep, Write]
 version: 0.1.0
 ---
+
 
 
 # Responsive Design
@@ -209,4 +211,3 @@ Save to `docs/responsive/<feature>.md`:
 - **Tap targets close together** — accidental taps on adjacent elements
 - **Type that's too small on mobile** (< 16px body) — triggers iOS zoom on focus
 - **Containers that don't cap** on huge screens — line lengths exceed 90ch are unreadable
-

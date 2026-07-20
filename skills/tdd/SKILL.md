@@ -1,8 +1,10 @@
 ---
 name: tdd
 description: Test-Driven Development cycle (Beck). Enforces red → green → refactor before writing implementation code.
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 0.1.0
 ---
+
 
 
 # TDD — Test-Driven Development

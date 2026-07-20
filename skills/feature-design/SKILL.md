@@ -1,8 +1,10 @@
 ---
 name: feature-design
 description: Structured feature/build discussion — scope, architecture, decisions, then lock a plan before writing code
+allowed-tools: [Read, Glob, Grep, TodoWrite]
 version: 0.1.0
 ---
+
 
 
 # Feature Design Discussion

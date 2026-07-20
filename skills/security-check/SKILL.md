@@ -1,8 +1,10 @@
 ---
 name: security-check
-description: [CLI-only] Scan the codebase for security vulnerabilities.
+description: [CLI-only] Scan for security vulnerabilities — hardcoded secrets, injection flaws, weak auth, insecure deps. Use before deploy or when adding auth/data-handling code.
+allowed-tools: [Read, Grep, Glob, Bash]
 version: 0.1.0
 ---
+
 
 
 Scan the codebase for security vulnerabilities. Do the following steps in order:

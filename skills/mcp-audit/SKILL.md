@@ -1,8 +1,10 @@
 ---
 name: mcp-audit
-description: Audit an MCP server project for correctness, security, and deploy-readiness. Catches the 8 common gotchas that bite when shipping MCP behind a tunnel/proxy (FastMCP DNS-rebinding, hardcoded log paths, port conflicts, etc.). Use before deploying any MCP server, or when an MCP "sho
+description: Audit an MCP server project for correctness, security, and deploy-readiness. Catches the 8 common gotchas that bite when shipping MCP behind a tunnel/proxy (FastMCP DNS-rebinding, hardcoded log paths, port conflicts, etc.). Use before deploying any MCP server, or when an MCP "should work" but doesn't.
+allowed-tools: [Read, Glob, Grep, Bash]
 version: 0.1.0
 ---
+
 
 
 # MCP Server Audit

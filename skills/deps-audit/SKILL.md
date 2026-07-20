@@ -1,8 +1,10 @@
 ---
 name: deps-audit
-description: [CLI-only] Audit project dependencies and environment variables for security, pinning, and hygiene.
+description: [CLI-only] Audit dependencies for CVEs, unpinned versions, ghost imports, license risks, and env var hygiene. Use before deploy or when adding new packages.
+allowed-tools: [Read, Grep, Glob, Bash, Write]
 version: 0.1.0
 ---
+
 
 
 Audit project dependencies and environment variables for security, pinning, and hygiene. Do the following steps in order:

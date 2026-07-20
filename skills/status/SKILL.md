@@ -1,8 +1,10 @@
 ---
 name: status
-description: [CLI-only] Project status check — tasks, user actions, and architecture alignment.
+description: [CLI-only] Show project status — pending tasks, latest user actions, and architecture alignment flags. Use when resuming work or asking "what's next" or "where are we".
+allowed-tools: [Read, Glob, Bash, Task]
 version: 0.1.0
 ---
+
 
 
 Project status check — tasks, user actions, and architecture alignment. Do the following steps in order:

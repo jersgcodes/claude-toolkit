@@ -1,8 +1,10 @@
 ---
 name: motion-pipeline
 description: Plan a motion graphics production pipeline — landing hero, explainer, preview, social shorts, onboarding — from one master asset to many derived outputs. Use before commissioning or producing any motion content.
+allowed-tools: [Read, Glob, Grep, Write]
 version: 0.1.0
 ---
+
 
 
 # Motion Pipeline

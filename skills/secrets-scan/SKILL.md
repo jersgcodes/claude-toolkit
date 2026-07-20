@@ -1,8 +1,10 @@
 ---
 name: secrets-scan
-description: [CLI-only] Scan for exposed secrets in code and git history.
+description: [CLI-only] Scan for exposed secrets, API keys, tokens, or credentials in code and git history. Use when auditing before a commit, deploy, or open-sourcing a repo.
+allowed-tools: [Read, Grep, Glob, Bash]
 version: 0.1.0
 ---
+
 
 
 Scan for exposed secrets in code and git history. Do the following steps in order:

@@ -1,8 +1,10 @@
 ---
 name: postmortem
 description: Blameless postmortem after an incident or significant bug. Captures timeline, contributing factors, and concrete action items. Outputs to docs/postmortems/.
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 0.1.0
 ---
+
 
 
 # Postmortem
@@ -241,4 +243,3 @@ Solo work doesn't escape this — be kind to past-you. The postmortem is for fut
 - Reads commit history, log files, and code — moderate cost
 - Use a subagent for deep log analysis if logs are > 1MB
 - Cap timeline at 20 events. If more, summarize.
-

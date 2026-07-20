@@ -1,8 +1,10 @@
 ---
 name: visual-mock
 description: Generate a static HTML mockup to preview a UI design in the browser BEFORE committing to React/Vue/Svelte components. Bridges ASCII sketch → real implementation.
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
 version: 0.1.0
 ---
+
 
 
 # Visual Mock
@@ -169,4 +171,3 @@ Or commit if they're useful reference.
 - **No mobile width** — desktop-only mock misses 60% of the truth
 - **Don't open in browser** — Claude can't see the rendering; you have to
 - **Generic AI-style design** — rounded cards, gradient buttons, blue everywhere — use `/visual-mock` to *escape* defaults, not reproduce them
-

@@ -1,8 +1,10 @@
 ---
 name: api-design
 description: Design an API surface (REST/GraphQL/RPC/bot commands) before writing code. Covers resources, verbs, errors, pagination, versioning, contract-first vs code-first.
+allowed-tools: [Read, Glob, Grep, Write]
 version: 0.1.0
 ---
+
 
 
 # API Design

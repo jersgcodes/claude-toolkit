@@ -1,8 +1,10 @@
 ---
 name: hooks
-description: [CLI-only] Show the current hooks configuration and explain what each hook does.
+description: [CLI-only] Show active Claude Code hooks and explain what each one does. Use when debugging hook behaviour, auditing automation, or after editing settings.json — "what hooks are active", "show my hooks".
+allowed-tools: [Read, Bash]
 version: 0.1.0
 ---
+
 
 
 Show the current hooks configuration and explain what each hook does. Do the following steps in order:

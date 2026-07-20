@@ -1,8 +1,10 @@
 ---
 name: diff-review
-description: [CLI-only] Review staged changes before running pre-commit checks.
+description: [CLI-only] Review staged git changes for bugs, privacy issues, debug leftovers, and missing tests before committing. Use before /pre-commit or when asked to review a diff.
+allowed-tools: [Read, Grep, Bash]
 version: 0.1.0
 ---
+
 
 
 Review staged changes before running pre-commit checks. Do the following steps in order:

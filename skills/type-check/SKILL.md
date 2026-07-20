@@ -1,8 +1,10 @@
 ---
 name: type-check
-description: [CLI-only] Run static type checking for the current project. Auto-detects stack.
+description: [CLI-only] Run static type checking (mypy / tsc). Use when you want to catch type errors, before committing, or after adding new types or refactoring.
+allowed-tools: [Bash, Read, Grep, Glob]
 version: 0.1.0
 ---
+
 
 
 Run static type checking for the current project. Auto-detects stack. Do the following steps in order:

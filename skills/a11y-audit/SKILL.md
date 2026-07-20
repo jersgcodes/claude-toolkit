@@ -1,8 +1,10 @@
 ---
 name: a11y-audit
 description: Accessibility audit against WCAG 2.1 AA. Two modes — pre-build planning (design intent) or post-build verification (existing component/page). Extends /style-check with depth.
+allowed-tools: [Read, Glob, Grep, Bash]
 version: 0.1.0
 ---
+
 
 
 # Accessibility Audit
@@ -151,4 +153,3 @@ Save audits to `docs/a11y/YYYY-MM-DD-<feature>.md`.
 - **Hover-only tooltips** — keyboard/touch users never see them
 - **Auto-playing media with audio** — disorienting and accessibility-failing
 - **Generic link text** ("click here") — screen reader users browse by link list
-

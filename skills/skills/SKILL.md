@@ -1,8 +1,10 @@
 ---
 name: skills
-description: [CLI-only] List all available skills (slash commands) and what they do.
+description: [CLI-only] List all available slash commands and what they do. Use when asking "what skills exist", "what commands are available", or "what can I run".
+allowed-tools: [Read, Glob]
 version: 0.1.0
 ---
+
 
 
 List all available skills (slash commands) and what they do. Do the following steps in order:
