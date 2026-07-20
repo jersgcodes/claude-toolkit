@@ -1,8 +1,10 @@
 ---
 name: workspace-status
-description: [CLI-only] Show pending tasks across all projects in the workspace.
+description: [CLI-only] Show pending tasks across all projects in the workspace. Use for a quick overview of what is in progress, blocked, or backlogged across every project.
+allowed-tools: [Bash, Read]
 version: 0.1.0
 ---
+
 
 
 Show pending tasks across all projects in the workspace. Do the following steps in order:

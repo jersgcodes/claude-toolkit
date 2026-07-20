@@ -1,8 +1,10 @@
 ---
 name: worktree
 description: [CLI-only] Create or manage isolated git worktrees for parallel feature work without context-switching the main checkout.
+allowed-tools: [Bash, Read]
 version: 0.1.0
 ---
+
 
 
 # Worktree

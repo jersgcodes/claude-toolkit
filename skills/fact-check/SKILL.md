@@ -1,8 +1,10 @@
 ---
 name: fact-check
 description: Fact-check data files for hallucinated claims, unsourced estimates, and stale figures. Classifies every data point as VERIFIED, ESTIMATE, or UNVERIFIED.
+allowed-tools: [Read, Grep, Glob, WebFetch, Edit]
 version: 0.1.0
 ---
+
 
 
 # Fact Check (Data Source Audit)

@@ -1,8 +1,10 @@
 ---
 name: perf
 description: Performance check — analyze code for optimization opportunities (static) and run profilers (dynamic). Combines former /optimize + /profile.
+allowed-tools: [Read, Glob, Grep, Bash]
 version: 0.1.0
 ---
+
 
 
 # Perf

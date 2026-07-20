@@ -1,8 +1,10 @@
 ---
 name: stack-detect
-description: [CLI-only] Identify the current project's tech stack and list applicable quality/profiling tools.
+description: [CLI-only] Detect the project's tech stack and list applicable quality/profiling tools and their install status. Use at project start or when setting up tooling.
+allowed-tools: [Read, Glob, Bash]
 version: 0.1.0
 ---
+
 
 
 Identify the current project's tech stack and list applicable quality/profiling tools. Do the following steps in order:

@@ -1,8 +1,10 @@
 ---
 name: pre-commit
-description: [CLI-only] Run all pre-commit skill checks in parallel before committing.
+description: [CLI-only] Run all pre-commit checks in parallel before committing. Use when ready to commit, or when you want test coverage, security, secrets, privacy, and API checks run together.
+allowed-tools: [Read, Glob, Grep, Bash, Task]
 version: 0.1.0
 ---
+
 
 
 Run all pre-commit skill checks in parallel before committing. Do the following steps in order:

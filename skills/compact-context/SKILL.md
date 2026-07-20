@@ -1,8 +1,10 @@
 ---
 name: compact-context
-description: Manage the Claude Code context window by summarising what matters and preparing a clean handoff.
+description: Use when context is getting full, before /clear, or to save a handoff summary. Triggers on "compact context", "save handoff", "context full", "summarise session".
+allowed-tools: [Read, Bash, Write]
 version: 0.1.0
 ---
+
 
 
 Manage the Claude Code context window by summarising what matters and preparing a clean handoff. Do the following steps in order:

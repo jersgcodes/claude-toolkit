@@ -1,8 +1,10 @@
 ---
 name: retrospective
-description: [CLI-only] Run an end-of-sprint retrospective based on git history and task state.
+description: [CLI-only] End-of-sprint retrospective based on git history and task state. Use after a sprint or release to review what shipped, what didn't, and what slowed the team down.
+allowed-tools: [Read, Glob, Grep, Bash]
 version: 0.1.0
 ---
+
 
 
 Run an end-of-sprint retrospective based on git history and task state. Do the following steps in order:

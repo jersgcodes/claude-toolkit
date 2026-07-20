@@ -1,8 +1,10 @@
 ---
 name: mobile-audit
-description: Audit a web app for mobile compatibility issues. Focuses on touch, layout, performance, and input UX on real phones.
+description: Audit a web app for mobile compatibility issues — touch targets, iOS zoom, viewport, hover-only interactions, socket reconnect. Use before shipping or after adding new pages — "mobile audit", "check mobile UX".
+allowed-tools: [Read, Grep, Glob]
 version: 0.1.0
 ---
+
 
 
 Audit a web app for mobile compatibility issues. Focuses on touch, layout, performance, and input UX on real phones.

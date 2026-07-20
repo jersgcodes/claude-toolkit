@@ -1,8 +1,10 @@
 ---
 name: spike
 description: Time-boxed exploratory spike (Pragmatic Programmer's tracer bullet). Builds a throwaway prototype to LEARN before committing to a build. Outputs lessons, not production code.
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep, WebFetch, WebSearch]
 version: 0.1.0
 ---
+
 
 
 # Spike

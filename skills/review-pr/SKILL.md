@@ -1,8 +1,10 @@
 ---
 name: review-pr
-description: Review a pull request for logic, security, and style issues.
+description: Review a pull request or branch diff for logic bugs, security issues, style, and test coverage. Use before merging — "review PR", "review this branch", "check the diff".
+allowed-tools: [Read, Glob, Grep, Bash]
 version: 0.1.0
 ---
+
 
 
 Review a pull request for logic, security, and style issues. Do the following steps in order:

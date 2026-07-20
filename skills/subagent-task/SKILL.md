@@ -1,8 +1,10 @@
 ---
 name: subagent-task
 description: Orchestrate parallel subagents for a large task. Split → spawn N agents → synthesize. Use for bulk migrations, multi-project audits, parallel codebase exploration.
+allowed-tools: [Read, Glob, Grep, Agent, TodoWrite]
 version: 0.1.0
 ---
+
 
 
 # Subagent Task

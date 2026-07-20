@@ -1,8 +1,10 @@
 ---
 name: complexity
-description: [CLI-only] For a combined check (dead code + complexity + lint), use `/code-quality`.
+description: [CLI-only] Analyse cyclomatic and cognitive complexity, flag functions that need simplification. Use when code feels hard to follow, before refactoring, or standalone (not via /code-quality).
+allowed-tools: [Read, Grep, Glob, Bash]
 version: 0.1.0
 ---
+
 
 
 For a combined check (dead code + complexity + lint), use `/code-quality`.

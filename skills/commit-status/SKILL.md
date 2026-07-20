@@ -1,8 +1,10 @@
 ---
 name: commit-status
-description: [CLI-only] Show the current commit log state for this project.
+description: [CLI-only] Show today's pre-commit skill check results and commit readiness — use when about to commit, or to check whether /pre-commit skills have passed for the current branch.
+allowed-tools: [Bash]
 version: 0.1.0
 ---
+
 
 
 Show the current commit log state for this project. Do the following steps in order:

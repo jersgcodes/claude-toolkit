@@ -1,8 +1,10 @@
 ---
 name: seams
 description: Find seams in untested code (Feathers). Identifies safe injection points to add behavior or characterization tests without changing existing logic.
+allowed-tools: [Read, Glob, Grep, Bash]
 version: 0.1.0
 ---
+
 
 
 # Seams — Working with Legacy Code

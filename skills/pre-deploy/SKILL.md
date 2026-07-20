@@ -1,8 +1,10 @@
 ---
 name: pre-deploy
-description: [CLI-only] Full deployment readiness check. Runs all quality and security gates in sequence.
+description: [CLI-only] Full deployment readiness check — run before deploying to staging or production. Gates cover tests, lint, security, secrets, dependencies, optimization, and hardening.
+allowed-tools: [Read, Glob, Grep, Bash, Task]
 version: 0.1.0
 ---
+
 
 
 Full deployment readiness check. Runs all quality and security gates in sequence.

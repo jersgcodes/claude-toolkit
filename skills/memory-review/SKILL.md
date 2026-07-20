@@ -1,8 +1,10 @@
 ---
 name: memory-review
-description: [CLI-only] Audit and clean stale memory files across all projects.
+description: [CLI-only] Audit and clean stale memory files across all projects. Use periodically or when memories feel outdated — "review my memories", "clean up stale memory", "memory audit".
+allowed-tools: [Read, Edit, Glob, Bash]
 version: 0.1.0
 ---
+
 
 
 Audit and clean stale memory files across all projects. Do the following steps in order:

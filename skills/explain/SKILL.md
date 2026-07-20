@@ -1,8 +1,10 @@
 ---
 name: explain
-description: Explain a file, function, or concept for a non-technical audience.
+description: Explain a file, function, or concept in plain language for a non-technical audience. Use when asked to explain code, "what does X do", or when writing for non-developers.
+allowed-tools: [Read, Grep, Glob]
 version: 0.1.0
 ---
+
 
 
 Explain a file, function, or concept for a non-technical audience. Do the following steps in order:

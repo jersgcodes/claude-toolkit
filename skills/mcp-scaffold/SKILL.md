@@ -1,8 +1,10 @@
 ---
 name: mcp-scaffold
 description: Bootstrap a new MCP server project with battle-tested defaults — OAuth 2.1 or bearer auth, FastMCP transport-security configured, systemd + cloudflared templates, smoke test, unit tests. Saves you from the 8 gotchas /mcp-audit catches.
+allowed-tools: [Read, Write, Edit, Bash, Glob]
 version: 0.1.0
 ---
+
 
 
 # MCP Server Scaffold

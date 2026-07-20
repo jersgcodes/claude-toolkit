@@ -1,8 +1,10 @@
 ---
 name: style-check
-description: Audit a component or page against the workspace UX style guide.
+description: Audit a component or page against the workspace UX style guide — buttons, forms, loading states, error handling, accessibility, and responsive layout.
+allowed-tools: [Read, Grep, Glob]
 version: 0.1.0
 ---
+
 
 
 Audit a component or page against the workspace UX style guide. Do the following steps in order:

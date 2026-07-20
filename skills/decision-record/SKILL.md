@@ -1,8 +1,10 @@
 ---
 name: decision-record
 description: Capture an Architecture Decision Record (ADR) for a significant decision — context, options considered, decision, consequences. Lives in docs/adr/.
+allowed-tools: [Read, Write, Edit, Glob, Bash]
 version: 0.1.0
 ---
+
 
 
 # Decision Record (ADR)

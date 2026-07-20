@@ -1,8 +1,10 @@
 ---
 name: code-quality
-description: [CLI-only] Run a combined code quality check: dead code detection, complexity analysis, and linting. Produces a unified report.
+description: [CLI-only] Run a combined dead-code, complexity, and lint check — use before a PR, when code feels messy, or when asked to audit code quality, find unused code, or check complexity.
+allowed-tools: [Read, Grep, Glob, Bash]
 version: 0.1.0
 ---
+
 
 
 Run a combined code quality check: dead code detection, complexity analysis, and linting. Produces a unified report.

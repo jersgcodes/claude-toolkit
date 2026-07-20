@@ -1,8 +1,10 @@
 ---
 name: build-mode
-description: [CLI-only] Toggle build-mode permissions for the current project. Sets narrow, pre-approved permissions in `.claude/settings.local.json` (gitignored, per-machine only).
+description: [CLI-only] Toggle pre-approved build permissions on/off for this project — run after /pre-approve to activate narrow permissions, or to clear them at end of session. Use /build-mode on|off|status.
+allowed-tools: [Read, Write, Edit]
 version: 0.1.0
 ---
+
 
 
 Toggle build-mode permissions for the current project. Sets narrow, pre-approved permissions in `.claude/settings.local.json` (gitignored, per-machine only).

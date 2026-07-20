@@ -1,8 +1,10 @@
 ---
 name: wrap-up
-description: [CLI-only] End-of-session documentation update. Reviews what was built this session and updates TASKS.md, USER_ACTIONS.md, CLAUDE.md, and project-status.yaml.
+description: [CLI-only] End-of-session wrap-up — updates TASKS.md, USER_ACTIONS.md, CLAUDE.md, and project-status.yaml. Use at the end of every build session.
+allowed-tools: [Bash, Read, Grep, Glob, Write, Edit]
 version: 0.1.0
 ---
+
 
 
 End-of-session documentation update. Reviews what was built this session and updates TASKS.md, USER_ACTIONS.md, CLAUDE.md, and project-status.yaml.

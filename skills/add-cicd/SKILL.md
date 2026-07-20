@@ -1,8 +1,10 @@
 ---
 name: add-cicd
-description: [CLI-only] Scaffold GitHub Actions CI/CD workflows for this project.
+description: [CLI-only] Scaffold GitHub Actions CI/CD workflows when asked to set up CI, add GitHub Actions, automate testing, or configure deployment pipelines for this project.
+allowed-tools: [Read, Glob, Bash, Write]
 version: 0.1.0
 ---
+
 
 
 Scaffold GitHub Actions CI/CD workflows for this project. Do the following steps in order:
