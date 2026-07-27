@@ -53,7 +53,7 @@ Identify the four DFD elements per the threat-model standard:
 |---|---|---|
 | **External entity** | rectangle | User browser, third-party API, Telegram, attacker |
 | **Process** | circle | Your API handler, your worker, your Telegram bot |
-| **Data store** | parallel lines | SQLite db, 1Password vault, Coolify env vars |
+| **Data store** | parallel lines | SQLite db, secrets vault, deploy-platform env vars |
 | **Data flow** | arrow | HTTP request, file read, DB query, env var lookup |
 
 Use Mermaid to keep it in version control:

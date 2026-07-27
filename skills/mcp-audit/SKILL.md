@@ -47,7 +47,7 @@ For each item: locate the relevant code, decide PASS / WARN / FAIL, explain the 
    - PASS if `allowed_hosts` includes the public hostname; FAIL if not set and the server is bound to 127.0.0.1 (which is the right binding anyway — fix by adding `TransportSecuritySettings`, not by changing the bind)
    - Symptom in journal: `WARNING mcp.server.transport_security: Invalid Host header: ...`
 
-4. **Port doesn't collide with common services** — 8080 commonly taken by Docker/Coolify/Traefik. Default to **8082** or a service-specific port.
+4. **Port doesn't collide with common services** — 8080 commonly taken by Docker/Traefik/Jenkins. Default to **8082** or a service-specific port.
    - Find: `--port`, `port=`, systemd unit `ExecStart`, cloudflared `service:` URL
    - WARN if port is 8080 or 3000 (common collisions); recommend changing
    - Bonus check: do all three (app code default, systemd unit, cloudflared config) agree on the port? A mismatch is the #1 cause of 502 from CF.

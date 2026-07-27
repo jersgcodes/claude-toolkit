@@ -35,7 +35,7 @@ Based on Michael Nygard's ADR template (ThoughtWorks Technology Radar, 2011), st
 ## Stage 1 — Determine the decision
 
 From `$ARGUMENTS` or ask the user:
-- What's the decision? (short title, e.g. "Use Coolify on Hetzner instead of Railway")
+- What's the decision? (short title, e.g. "Self-host on a VPS instead of a PaaS")
 - Is this a new decision, or are you reversing/superseding an existing one?
 
 If reversing, locate the existing ADR (`grep -r "<old decision>" docs/adr/`) and reference its number.

@@ -92,7 +92,7 @@ Start with the surface symptom and ask "why" five times to drive past it.
 
 Example:
 - **Q1:** Why did login fail? **A:** Env var missing in production.
-- **Q2:** Why was it missing? **A:** I forgot to add it to Coolify when adding the new feature.
+- **Q2:** Why was it missing? **A:** I forgot to add it to the deploy platform's config when adding the new feature.
 - **Q3:** Why did I forget? **A:** No checklist when promoting from dev to prod.
 - **Q4:** Why is there no checklist? **A:** Solo workflow, never formalized.
 - **Q5:** Why does this matter now? **A:** Project complexity grew past the point where memory works.
@@ -138,9 +138,9 @@ Each action item must be:
 ```markdown
 | # | Action | Owner | By | Status |
 |---|---|---|---|---|
-| 1 | Add `pre-deploy-checklist.md` to repo | Jerome | YYYY-MM-DD | PENDING |
-| 2 | Add Coolify env var diff alert to /vps | Jerome | YYYY-MM-DD | PENDING |
-| 3 | Document the failure mode in MISTAKES.md | Jerome | YYYY-MM-DD | DONE (this session) |
+| 1 | Add `pre-deploy-checklist.md` to repo | owner | YYYY-MM-DD | PENDING |
+| 2 | Add an env-var diff alert on the deploy platform | owner | YYYY-MM-DD | PENDING |
+| 3 | Document the failure mode in MISTAKES.md | owner | YYYY-MM-DD | DONE (this session) |
 ```
 
 **Anti-pattern:** action items like "be more careful" or "review more thoroughly" — these don't change the system. Reject them.
