@@ -1,6 +1,6 @@
 ---
 name: design-review
-description: Judge a UI against the CRAFT BAR (design-lab/CRAFT-BAR.md) — 8 dimensions of craft ABOVE hygiene (typography that actually loads + is optically tuned, perceptual color, spatial rhythm, one focal path, coherent light model, choreographed motion, every state BUILT, and a point of view), verified IN-BROWSER (light + dark, every state). This is the qualitative "is it designed vs merely tidy" judge the linters defer to, and the real "done" gate. Complements /design-craft-check (numeric hygiene floor), /motion-check (motion hygiene), /style-check (UX behaviour), /a11y-audit (accessibility). Use after building any UI and before calling it done.
+description: Judge a UI against the CRAFT BAR (design-system/CRAFT-BAR.md) — 8 dimensions of craft ABOVE hygiene (typography that actually loads + is optically tuned, perceptual color, spatial rhythm, one focal path, coherent light model, choreographed motion, every state BUILT, and a point of view), verified IN-BROWSER (light + dark, every state). This is the qualitative "is it designed vs merely tidy" judge the linters defer to, and the real "done" gate. Complements /design-craft-check (numeric hygiene floor), /motion-check (motion hygiene), /style-check (UX behaviour), /a11y-audit (accessibility). Use after building any UI and before calling it done.
 allowed-tools: [Read, Grep, Glob, Bash, Agent]
 version: 0.1.0
 ---
@@ -11,7 +11,7 @@ gradient, tokens not hardcodes). Your job is the harder question they can't answ
 look at this and think "a human who cares made it", or just "it's tidy"?** Tidy-but-generic is the most
 common AI output and the exact thing this skill exists to catch.
 
-The rubric is the workspace's `design-lab/CRAFT-BAR.md` — read it first; it defines, per dimension, the
+The rubric is the workspace's `design-system/CRAFT-BAR.md` — read it first; it defines, per dimension, the
 **tidy floor** (what the linter catches) vs the **craft ceiling** (excellence) vs a **test**. You score
 against the ceiling. Do the steps in order.
 
@@ -22,9 +22,9 @@ Lanes: `/design-craft-check` = numeric hygiene FLOOR · `/design-review` (this) 
 
 **1. Load the bar, the tokens, and the target**
 
-- Read the workspace's `design-lab/CRAFT-BAR.md` (the 8-dimension rubric). If it's absent, say so and
+- Read the workspace's `design-system/CRAFT-BAR.md` (the 8-dimension rubric). If it's absent, say so and
   fall back to the dimensions summarized in step 3 — but prefer the file (it's the source of truth).
-- Locate the token source: `design-lab/tokens.css`, a theme CSS with `--` custom properties,
+- Locate the token source: `design-system/tokens.css`, a theme CSS with `--` custom properties,
   `tailwind.config.*`, `theme.ts`, or the project `STYLE_GUIDE.md`. The project's system wins over
   generic taste. Report: "Bar: CRAFT-BAR.md | Tokens: <source>".
 - Read the target UI file(s) fully (grep alone misses layout, hierarchy, and states).
@@ -34,7 +34,7 @@ Lanes: `/design-craft-check` = numeric hygiene FLOOR · `/design-review` (this) 
 **2. RENDER IT — the step the linters (and v1) skip**
 
 Craft lives in pixels, not source. **You must look at it**, not just read it. This is the check whose
-absence let design-lab v1 ship "Fraunces" named everywhere but never loaded (silent Georgia fallback).
+absence let the design system v1 ship "Fraunces" named everywhere but never loaded (silent Georgia fallback).
 
 - If it's a self-contained HTML file, render it headless in **both themes** with the installed Chrome:
   ```bash

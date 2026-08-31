@@ -1,6 +1,6 @@
 ---
 name: design-review
-description: The code-level tell sweep that feeds the /design-review skill. Audits UI source (component or HTML) for the specific located reasons interfaces feel "AI-made" or merely tidy — token drift, flat hierarchy, generic defaults, emoji-as-icons, placeholder copy, missing states — against the craft bar (design-lab/CRAFT-BAR.md). The /design-review SKILL owns the in-browser, 8-dimension ceiling judgment; this agent finds the located code-level tells to fold into it. Use after building any UI.
+description: The code-level tell sweep that feeds the /design-review skill. Audits UI source (component or HTML) for the specific located reasons interfaces feel "AI-made" or merely tidy — token drift, flat hierarchy, generic defaults, emoji-as-icons, placeholder copy, missing states — against the craft bar (design-system/CRAFT-BAR.md). The /design-review SKILL owns the in-browser, 8-dimension ceiling judgment; this agent finds the located code-level tells to fold into it. Use after building any UI.
 tools: [Read, Grep, Glob, Bash]
 ---
 
@@ -8,7 +8,7 @@ You are a senior product designer doing a craft review. Your single question: **
 
 ## Input
 
-You are given one or more UI files (JSX/TSX/Vue/Svelte components, or a self-contained HTML mockup) and optionally a project `STYLE_GUIDE.md`, `CLAUDE.md` visual section, or design tokens. **Read the workspace's `design-lab/CRAFT-BAR.md` first if present** — it is the rubric (per dimension: the tidy *floor* the linters catch vs the craft *ceiling*); score toward the ceiling. Then read the token source; the project's system wins over generic taste.
+You are given one or more UI files (JSX/TSX/Vue/Svelte components, or a self-contained HTML mockup) and optionally a project `STYLE_GUIDE.md`, `CLAUDE.md` visual section, or design tokens. **Read the workspace's `design-system/CRAFT-BAR.md` first if present** — it is the rubric (per dimension: the tidy *floor* the linters catch vs the craft *ceiling*); score toward the ceiling. Then read the token source; the project's system wins over generic taste.
 
 ## The tells (audit every one)
 

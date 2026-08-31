@@ -45,7 +45,7 @@ motion is fast, cheap to render, and respects accessibility. Do the steps in ord
 
 - Any non-trivial `@keyframes`/`animation` or transition with **no** `@media (prefers-reduced-motion: reduce)`
   fallback → **MEDIUM** (provide a reduced / no-motion variant). framer: no `useReducedMotion()` guard → **MEDIUM**.
-- **Scoping (validated by the design-lab fixtures):** only credit a reduced-motion fallback that lives in a
+- **Scoping (validated by the design-system fixtures):** only credit a reduced-motion fallback that lives in a
   stylesheet the page/component **actually loads**. A global fallback in `tokens.css` does not cover a file
   that doesn't `@import`/`<link>` it — check the load graph, not just "does the fallback exist somewhere."
 
