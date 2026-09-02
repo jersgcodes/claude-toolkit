@@ -12,6 +12,26 @@ motion is fast, cheap to render, and respects accessibility. Do the steps in ord
 
 ---
 
+**0. Run the programs before you read anything**
+
+Contrast, the 4/8 spacing grid, the type scale and colour-literal drift are **measured**, not
+judged. There are programs for them; run those first and never re-derive by eye what a program
+already reports with a number:
+
+```bash
+cd ~/claude/design-system/system
+python3 check_contrast.py     # every pair, every theme, both modes -- tier 1, stdlib, <1s
+python3 check_system.py       # component contract: no raw hex, radius roles only
+python3 check_consumers.py    # consumer drift: colour literals, off-grid spacing, off-scale type
+python3 check_rendered.py     # tier 2: measured in a real browser. Needs Chrome, ~17s
+```
+
+Report their output verbatim. Anything they cover is settled; your job starts where they stop.
+If a program cannot run, say so and stop -- an unrun check reports clean forever, which is the
+failure this preamble exists to prevent.
+
+---
+
 **1. Detect stack & locate motion**
 
 - `Glob` the UI (`src/`/`app/`/`components/`), then `Grep` for motion:
