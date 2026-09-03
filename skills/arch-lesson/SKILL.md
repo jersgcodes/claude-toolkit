@@ -12,7 +12,7 @@ not abstract theory. Keep each lesson ~5–8 min to read. Do the steps in order.
 
 **1. Load state**
 
-- **Pick the track.** Six tracks share this engine. Curricula and their reference files live in the
+- **Pick the track.** Seven tracks share this engine. Curricula and their reference files live in the
   user's private knowledge dir (`knowledge-base/arch-loop/` + `knowledge-base/arch-loop/references/`);
   read them at lesson time — this engine hardcodes no infra details, it grounds from the user's files.
   - default / `--track foundations` → `curriculum.md` (vendor-neutral principles, 24 topics).
@@ -32,6 +32,14 @@ not abstract theory. Keep each lesson ~5–8 min to read. Do the steps in order.
   - `--track devops` → `devops-curriculum.md` (ship & operate, 13 topics). Also read
     `references/devops.md`. Ground in the user's real infra from their `DEPLOYMENT.md` + CI configs
     (their containers, reverse proxy, service manager, pipelines) — read them; don't assume.
+  - `--track vapt` → `vapt-curriculum.md` (testing whether the defences hold, 13 topics). Also read
+    `references/cybersecurity.md` and `references/business-security.md`. **Authorisation gate: every
+    VAPT lesson names its target first and confirms it is the user's own system or a purpose-built
+    range (PortSwigger Web Security Academy, TryHackMe, Hack The Box). A lesson that cannot name a
+    legitimate target does not run.** Ground in what the user actually operates (the VPS from
+    `DEPLOYMENT.md`, their MCP servers, learn-bot, their repos). Every rung ends on the defensive
+    mirror: what would have prevented this, and does that control exist here? The offensive half is
+    always in service of the defensive half.
 - Read the chosen curriculum, plus `lessons-log.md` and `PRACTICES.md` (all in `knowledge-base/arch-loop/`).
 - Topic selection: (a) a topic named in the invocation wins; (b) `--place` → step 1a;
   (c) else the **first unchecked** topic in the chosen curriculum.
