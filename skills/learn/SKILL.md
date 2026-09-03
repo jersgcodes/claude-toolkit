@@ -17,7 +17,12 @@ grounding, teaching style, fact-check policy, and share/visibility rules all com
 
 - `/learn <course> [topic]`. Read `knowledge-base/learning/<course>/course.yaml` (domain, `grounding`,
   `goal`, `teaching_style`, `fact_check`, `visibility`), plus `curriculum.md`, `lessons-log.md`, and
-  `encyclopedia/_index.md`.
+  the encyclopedia index.
+- **Encyclopedia location.** Default `<course>/encyclopedia/`. If `course.yaml` sets
+  `encyclopedia_dir:`, resolve it **relative to the course directory** and use that instead — this
+  lets a course adopt an existing shared reference store rather than copying entries into itself.
+  `signals` does exactly this, pointing at `knowledge-base/encyclopedia/`, because those 8 entries
+  are already referenced from ten other files and moving them would break every one.
 - If `<course>` is missing/unknown, read `knowledge-base/learning/COURSES.md` and list the options.
 - Honour `teaching_style` for the whole session (e.g. "slow; define every term on first use").
 
@@ -42,13 +47,14 @@ never dump. Favor one vivid concrete example over generic description.
 
 **5. Encyclopedia entry (build the reference as you learn)**
 
-Write or update `encyclopedia/<slug>.md` from `encyclopedia/_TEMPLATE.md`.
+Write or update `<encyclopedia_dir>/<slug>.md` from that directory's `_TEMPLATE.md`
+(falling back to the course's own template if the shared store has none).
 - **Fact-check per `course.yaml`.** If `fact_check: required`, label every figure/claim
   **VERIFIED / ESTIMATE / UNVERIFIED**, and `WebSearch`/`WebFetch` to verify load-bearing numbers before
   writing them. Never state an invented statistic as fact. When unsure, mark UNVERIFIED and say so.
 - Set the entry's `visibility:` per the course's `visibility` policy (default private; flag entries
   genuinely worth sharing as `share-candidate` — that's the growth/teaching feed, opt-in, not automatic).
-- Add the entry to `encyclopedia/_index.md`.
+- Add the entry to `<encyclopedia_dir>/_index.md`.
 
 **6. Guided Q&A (does it stick)**
 
