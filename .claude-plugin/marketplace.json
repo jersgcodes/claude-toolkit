@@ -3,6 +3,7 @@
   "owner": {
     "name": "jersgcodes"
   },
+  "description": "Jer's personal Claude Code toolkit: design, planning, review, quality and ops skills, kept in one place so the CLI and the web run the same copy.",
   "plugins": [
     {
       "name": "claude-toolkit",
