@@ -2,7 +2,7 @@
 name: design-craft-check
 description: Run the numeric craft checks (contrast, 4/8 spacing grid, type scale, colour literals) as PROGRAMS, then hand the judgement half to /design-review. The numeric floor is no longer a prompt.
 allowed-tools: [Read, Grep, Glob, Bash]
-version: 0.2.0
+version: 0.3.0
 ---
 
 **This skill used to describe the numeric checks in prose. They are programs now.**
@@ -31,6 +31,11 @@ python3 check_rendered.py     # tier 2: measured in a real browser. Needs Chrome
 Report their output verbatim. Anything they cover is settled; your job starts where they stop.
 If a program cannot run, say so and stop -- an unrun check reports clean forever, which is the
 failure this preamble exists to prevent.
+
+**Off this machine there is no `design-system` checkout** (claude.ai, a phone, someone else's
+laptop). Say so in one line -- "numeric floor not run: no design-system checkout" -- and carry
+on to the judgement half, which needs no programs. Never report the numeric floor as passing
+when it did not run.
 
 ---
 

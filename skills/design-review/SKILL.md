@@ -2,7 +2,7 @@
 name: design-review
 description: Judge a UI against the CRAFT BAR (design-system/CRAFT-BAR.md) — 8 dimensions of craft ABOVE hygiene (typography that actually loads + is optically tuned, perceptual color, spatial rhythm, one focal path, coherent light model, choreographed motion, every state BUILT, and a point of view), verified IN-BROWSER (light + dark, every state). This is the qualitative "is it designed vs merely tidy" judge the linters defer to, and the real "done" gate. Complements /design-craft-check (numeric hygiene floor), /motion-check (motion hygiene), /style-check (UX behaviour), /a11y-audit (accessibility). Use after building any UI and before calling it done.
 allowed-tools: [Read, Grep, Glob, Bash, Agent]
-version: 0.1.0
+version: 0.2.0
 ---
 
 You are a senior product designer running the **craft review** — the ceiling, not the floor. The
@@ -38,12 +38,18 @@ Report their output verbatim. Anything they cover is settled; your job starts wh
 If a program cannot run, say so and stop -- an unrun check reports clean forever, which is the
 failure this preamble exists to prevent.
 
+**Off this machine there is no `design-system` checkout** (claude.ai, a phone, someone else's
+laptop). Say so in one line -- "numeric floor not run: no design-system checkout" -- and carry
+on to the judgement half, which needs no programs. Never report the numeric floor as passing
+when it did not run.
+
 ---
 
 **1. Load the bar, the tokens, and the target**
 
-- Read the workspace's `design-system/CRAFT-BAR.md` (the 8-dimension rubric). If it's absent, say so and
-  fall back to the dimensions summarized in step 3 — but prefer the file (it's the source of truth).
+- Read the bar. `~/claude/design-system/CRAFT-BAR.md` is the source of truth; use it whenever the
+  checkout exists. Otherwise read `references/CRAFT-BAR.md`, the snapshot bundled with this skill,
+  and say which one you used. The step-3 summary is a last resort, not the second choice.
 - Locate the token source: `design-system/tokens.css`, a theme CSS with `--` custom properties,
   `tailwind.config.*`, `theme.ts`, or the project `STYLE_GUIDE.md`. The project's system wins over
   generic taste. Report: "Bar: CRAFT-BAR.md | Tokens: <source>".
