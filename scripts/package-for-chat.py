@@ -21,6 +21,7 @@ from __future__ import annotations
 import argparse
 import pathlib
 import shutil
+import sys
 import zipfile
 
 PLUGIN = pathlib.Path(__file__).resolve().parent.parent
@@ -71,14 +72,35 @@ def write_index(rows: list[tuple[str, int, int, str]]) -> None:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true", help="include CLI-only skills")
+    ap.add_argument("--root", action="append", default=[], metavar="DIR",
+                    help="an extra skills/ directory to package alongside this plugin's. "
+                         "Repeatable. Lets a dependent plugin build one complete upload set "
+                         "without holding a copy of this script.")
+    ap.add_argument("--out", metavar="DIR",
+                    help="where to write the zips (default: this plugin's dist/chat-skills)")
     args = ap.parse_args()
+
+    global DIST
+    if args.out:
+        DIST = pathlib.Path(args.out).expanduser().resolve()
 
     if DIST.exists():
         shutil.rmtree(DIST)
     DIST.mkdir(parents=True)
 
+    roots = [PLUGIN / "skills"]
+    for extra in args.root:
+        d = pathlib.Path(extra).expanduser().resolve()
+        if d.is_dir():
+            roots.append(d)
+            print(f"also packaging {d}")
+        else:
+            print(f"--root {extra} is not a directory; ignored", file=sys.stderr)
+    if args.root:
+        print()
+
     packaged, skipped, fat, rows = 0, [], [], []
-    for skill_dir in sorted((PLUGIN / "skills").iterdir()):
+    for skill_dir in sorted((d for r in roots for d in r.iterdir()), key=lambda d: d.name):
         md = skill_dir / "SKILL.md"
         if not skill_dir.is_dir() or not md.exists():
             continue
