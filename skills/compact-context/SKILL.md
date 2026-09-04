@@ -1,8 +1,8 @@
 ---
 name: compact-context
-description: Use when context is getting full, before /clear, or to save a handoff summary. Triggers on "compact context", "save handoff", "context full", "summarise session".
+description: Use when context is getting full, before /clear, or to save a handoff summary. Writes the handoff to .claude/handoff.md as well as printing it. Triggers on "compact context", "save handoff", "context full", "summarise session".
 allowed-tools: [Read, Bash, Write]
-version: 0.1.0
+version: 0.2.0
 ---
 
 
@@ -36,17 +36,59 @@ Check if any of the following should be saved to memory before context is cleare
 
 Save any new memories to the project memory folder following the memory format (frontmatter with name, description, type), then update MEMORY.md index.
 
-**4. Surface a handoff prompt**
-Print a ready-to-paste prompt the user can use to start the next session cleanly. It should include:
+**4. Write the handoff to disk, then print it**
+
+Never print the handoff without also writing it. A handoff that only exists in the
+terminal is lost the moment the user forgets to copy it, and that is the failure this
+step exists to prevent.
+
+*4a. Resolve the target.* Write to `.claude/handoff.md` **relative to the repo root**:
+
+```bash
+ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+```
+
+A git worktree has its own root, so each worktree gets its own handoff with no naming
+scheme needed. Do not try to make the filename worktree-aware.
+
+*4b. Keep one generation.* If `$ROOT/.claude/handoff.md` already exists, move it to
+`$ROOT/.claude/handoff-prev.md` before writing. One generation back, no archive
+directory. Anything older is recoverable from the session transcript in
+`~/.claude/projects/<slug>/*.jsonl`.
+
+*4c. Check it is ignored.* `.claude/` should be in `.gitignore`. If it is not, still
+write the file, but tell the user in step 5 — a handoff contains session state and
+should not be committed.
+
+*4d. Write the file* with this shape:
+
+```markdown
+# Handoff — <project name>
+
+**Written:** <YYYY-MM-DD HH:MM> · **Branch:** <branch> · **Commit:** <short sha>
+**Worktree:** <root path>
+
+## Paste this to start the next session
+
+<the ready-to-paste prompt, in a fenced code block>
+
+## Session summary
+
+<the step-2 summary: completed / in progress / decisions not yet in code or docs>
+```
+
+The paste-block itself must include:
 - Current branch and last commit
 - What was in progress
 - What to do next (the immediate next step)
 - Any blockers or decisions needed
 
-Format it as a code block so it's easy to copy.
+*4e. Print it too*, as a code block, so the user can copy it without opening the file.
 
 **5. Final advice**
 Tell the user clearly:
 - Estimated context usage %
 - Whether to `/compact` in-place, `/clear` now, or continue
-- If clearing: confirm memories and handoff prompt are saved first
+- **The path to the handoff file just written**, so it can be found after `/clear`
+- If clearing: confirm memories and handoff file are saved first
+- If `.claude/` was not gitignored, say so
