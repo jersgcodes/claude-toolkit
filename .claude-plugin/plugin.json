@@ -1,8 +1,8 @@
 {
   "name": "claude-toolkit",
   "displayName": "Claude Toolkit",
-  "description": "66 skills for design, planning, review, quality and ops, plus one agent. Design skills carry the craft bar with them and degrade honestly when the private design-system checkout is absent. Some skills are CLI-only and are tagged in their description.",
-  "version": "0.2.0",
+  "description": "65 skills for design, planning, review, quality and ops, plus one agent. Design skills carry the craft bar with them and degrade honestly when the private design-system checkout is absent. Some skills are CLI-only and are tagged in their description.",
+  "version": "0.3.0",
   "author": {
     "name": "Jer"
   },

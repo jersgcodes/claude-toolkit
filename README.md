@@ -1,6 +1,6 @@
 # Claude Toolkit
 
-A Claude Code **plugin**: 66 skills for design, planning, review, quality and ops, plus one
+A Claude Code **plugin**: 65 skills for design, planning, review, quality and ops, plus one
 agent. Usable on the CLI, on the web (claude.ai/code) and on mobile.
 
 Skills use progressive disclosure — a lean `SKILL.md` body plus `references/` loaded on demand —
@@ -20,7 +20,7 @@ description.
 
 | Family | Skills |
 |---|---|
-| Design and front-end | design-review, design-craft-check, motion-check, style-check, a11y-audit, mobile-audit, responsive-design, visual-mock, component-design, ui-diff, brand-identity, motion-pipeline, data-story-check |
+| Design and front-end | design-review, design-craft-check, motion-check, style-check, a11y-audit, mobile-audit, responsive-design, visual-mock, component-design, ui-diff, brand-identity, motion-pipeline |
 | Planning and architecture | feature-design, api-design, schema-design, arch-review, arch-lesson, decision-record, threat-model, spike, seams |
 | Review and quality | code-quality, complexity, refactor, tdd, test-coverage, diff-review, review-pr, type-check, format, perf |
 | Security | security-check, secrets-scan, deps-audit, leak-audit, scale-audit |
@@ -29,6 +29,10 @@ description.
 
 27 skills are tagged **[CLI-only]** in their description: they need a local checkout, git, or
 local hooks, and do nothing useful on web or mobile.
+
+`data-story-check` used to live here. It moved to the private companion plugin
+[`claude-toolkit-private`](https://github.com/jersgcodes/claude-toolkit-private), because its
+rubric quotes a private project's findings verbatim and a skill without its bar judges by taste.
 
 ## The design skills and the private design system
 

@@ -8,7 +8,7 @@
     {
       "name": "claude-toolkit",
       "source": ".",
-      "description": "66 skills for design, planning, review, quality and ops, plus one agent. Usable on CLI, web and mobile; CLI-only skills are tagged in their description."
+      "description": "65 skills for design, planning, review, quality and ops, plus one agent. Usable on CLI, web and mobile; CLI-only skills are tagged in their description."
     }
   ]
 }
