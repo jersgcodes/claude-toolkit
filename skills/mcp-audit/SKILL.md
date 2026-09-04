@@ -2,7 +2,7 @@
 name: mcp-audit
 description: Audit an MCP server project for correctness, security, and deploy-readiness. Catches the 8 common gotchas that bite when shipping MCP behind a tunnel/proxy (FastMCP DNS-rebinding, hardcoded log paths, port conflicts, etc.). Use before deploying any MCP server, or when an MCP "should work" but doesn't.
 allowed-tools: [Read, Glob, Grep, Bash]
-version: 0.1.0
+version: 0.2.0
 ---
 
 
@@ -31,6 +31,13 @@ Different from `/security-check` (generic OWASP scan) — this is **MCP-specific
 ## Audit checklist
 
 For each item: locate the relevant code, decide PASS / WARN / FAIL, explain the *why*. Output as a structured report at the end.
+
+### A0. Exposure method — Tunnel, NOT a proxied A-record (decide FIRST)
+
+An MCP is a **server-to-server** client (Anthropic's backend fetches it — no browser). If you expose it via **nginx + a Cloudflare-*proxied* (orange) A-record**, Cloudflare's **Bot Fight Mode / Managed Challenge 403s the connector** — the same way it 403s `curl` — because it isn't a browser and can't solve the JS challenge. Classic symptom: `curl` to the public URL returns `HTTP 403`, header `cf-mitigated: challenge`, body "Just a moment…", **while the origin is healthy locally** (`--resolve` to 127.0.0.1 returns 200).
+   - **PASS:** exposed via a **Cloudflare Tunnel** (`CNAME → *.cfargotunnel.com`). Tunnel hostnames aren't hit by the bot challenge. This is the `/mcp-scaffold` default.
+   - **Also OK:** DNS-only (grey cloud) + a real (Let's Encrypt) cert — bypasses Cloudflare's proxy entirely; or a WAF **Skip** rule for the hostname.
+   - **FAIL:** nginx + proxied A-record with Bot Fight Mode on. Confirm with `curl` — a 403 "Just a moment…" challenge page is this exact trap.
 
 ### A. Transport + binding
 

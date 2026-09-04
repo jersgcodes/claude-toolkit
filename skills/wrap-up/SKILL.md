@@ -2,12 +2,17 @@
 name: wrap-up
 description: [CLI-only] End-of-session wrap-up — updates TASKS.md, USER_ACTIONS.md, CLAUDE.md, and project-status.yaml. Use at the end of every build session.
 allowed-tools: [Bash, Read, Grep, Glob, Write, Edit]
-version: 0.1.0
+version: 0.2.0
 ---
 
-
-
 End-of-session documentation update. Reviews what was built this session and updates TASKS.md, USER_ACTIONS.md, CLAUDE.md, and project-status.yaml.
+
+`$ARGUMENTS` selects the scope:
+
+| Argument | Runs |
+|---|---|
+| *(none)* | Every step below |
+| `tasks` | Steps 1 to 3 only — capture the task list and stop. Use mid-session, after a planning discussion, or when you only want next steps written down |
 
 Do the following steps in order:
 
@@ -34,13 +39,41 @@ If any matches found, flag for Step 8 (postmortem suggestion).
 
 **2. Update TASKS.md**
 
-Use the format in workspace CLAUDE.md §End-of-build-session checklist.
+Flip completed tasks to `Status: DONE`, then scan the conversation for work that is not yet on the list: decisions made, features discussed, issues raised, anything named as a next step.
+
+Append new build tasks (code, config, infra) in the format the file already uses. The workspace standard is:
+
+```
+- [ ] [Bnn] <task> — <sub-project or area> — Status: PENDING
+```
+
+If the project allocates task IDs, read the highest existing one and continue the sequence; if it does not, omit them. Append to the pending section only — never reformat existing entries, never rewrite the file wholesale.
+
+Be specific: "Build Gaps & Opportunities page showing 51 gaps ranked by severity", not "improve gaps". Include the reason so future-Claude knows why. Genuinely actionable items only, not observations.
+
+Never write to `TASKS_CURRENT.md`. Every hook and script counts `Status: PENDING` in `TASKS.md`; a task written anywhere else is invisible to the session-start summary and to `/status` in both its modes.
 
 ---
 
 **3. Update USER_ACTIONS.md**
 
-Use the format in workspace CLAUDE.md §End-of-build-session checklist.
+Everything the user must do, decide, or provide goes here rather than TASKS.md: things to test, deploy or setup steps, and decisions only they can make. Add a dated entry at the top, per workspace CLAUDE.md §End-of-build-session checklist:
+
+```markdown
+## YYYY-MM-DD — <feature name>
+### Built
+- ...
+### Test on your device
+- [ ] ...
+### Deploy / setup steps
+- [ ] ...
+### Decisions needed
+- ...
+```
+
+Preserve existing entries in both files. You are appending, not regenerating.
+
+**If `$ARGUMENTS` is `tasks`, stop here** and report what was written to each file.
 
 ---
 
@@ -61,89 +94,17 @@ If nothing needs changing, skip this step and say so.
 
 Check if `docs/` exists in the project root. If not, skip this step and note it.
 
-If `docs/` exists:
+If it does, update or create `docs/architecture.md` (description paragraph, Mermaid module map, key-files table), then run the architecture generator script if the project has one.
 
-a) Update or create `docs/architecture.md` with:
-- A short paragraph describing what the project does and its tech stack
-- A **Mermaid diagram** showing the current module/component structure. Use `graph TD` or `graph LR`. Include:
-  - Key source directories and their role
-  - Major data flows (e.g. user → wizard → AI → results)
-  - External dependencies (APIs, storage)
-- A "Key files" table: file path → one-line purpose
-
-Format:
-```markdown
-# Architecture
-
-<short description paragraph>
-
-## Module Map
-
-\`\`\`mermaid
-graph TD
-  ...
-\`\`\`
-
-## Key Files
-
-| File | Purpose |
-|---|---|
-| src/lib/ai.js | ... |
-```
-
-b) After updating `docs/architecture.md`, check if `scripts/gen-architecture.js` or `scripts/gen-architecture.ts` exists.
-   - If `.js` exists, run: `node scripts/gen-architecture.js`
-   - If `.ts` exists (no `.js`), run: `npx tsx scripts/gen-architecture.ts`
-   - If the script succeeds, note in the step 6 summary that `architecture.drawio` was regenerated.
-   - If the script fails, flag the error in the USER_ACTIONS.md deploy steps instead (include the error message).
-   - If neither script exists, flag in USER_ACTIONS.md deploy steps that `scripts/gen-architecture.js` should be created.
+> **Reference:** the `architecture.md` template and the generator-script rules are in `references/wrap-up-ref.md` § Step 5.
 
 ---
 
 **6. Update project-status.yaml (API declarations for orchestrator dashboard)**
 
-This file tells the Claude Dashboard what external APIs this project uses. It must stay in sync with the codebase.
+Scan the codebase for external API usage, classify each API as `paid` / `free-tier` / `free`, and write or update `project-status.yaml` at the project root. If the existing file is already accurate, update only `last_updated`.
 
-a) **Check if project-status.yaml already exists** at the project root.
-
-b) **Scan for external API usage** in the codebase. Search for:
-   - `.env` or `.env.example` — environment variable names containing KEY, TOKEN, SECRET, PASSWORD, API, URL (for databases)
-   - `requirements.txt` / `package.json` — API client libraries (anthropic, openai, google-generativeai, boto3, telegram, praw, tavily, etc.)
-   - Python imports of API clients (`import anthropic`, `import openai`, `from telegram`, etc.)
-   - JS/TS imports of API clients (`@anthropic-ai/sdk`, `openai`, etc.)
-   - HTTP calls to external services (`requests.get`, `fetch`, `axios`, `httpx`)
-
-c) **Classify each API** by tier:
-   - `paid` — costs money per call (Anthropic Claude, OpenAI, AWS S3, Google Places, etc.)
-   - `free-tier` — free with usage limits (Gemini free tier, Neon free tier, Reddit API, etc.)
-   - `free` — no cost or limits (Telegram Bot API, RSS feeds, web scraping, etc.)
-
-d) **Write or update `project-status.yaml`** at the project root:
-
-```yaml
-# project-status.yaml — <project-name>
-# Generated by wrap-up skill. Do not edit manually.
-
-last_updated: "<current ISO 8601 timestamp with timezone>"
-
-apis:
-  - name: <Human-readable API name>
-    key_env: <ENV_VAR_NAME>
-    tier: <paid|free|free-tier>
-    modules:
-      - <source file making the call>
-    triggers:
-      - <user action or schedule that triggers the call>
-```
-
-Rules:
-- If the existing file is already accurate (same APIs, same tiers), update only `last_updated` and skip the rest
-- If no external APIs are used (e.g. offline-only project), write `apis: []`
-- Use `~` (null) for `key_env` if no env var is needed (e.g. public RSS feeds, web scraping)
-- Keep entries sorted: paid first, then free-tier, then free
-- Do NOT include local-only dependencies (SQLite, local files, in-memory caches)
-
-e) **Verify .gitignore** includes `project-status.yaml`. If not, append it.
+> **Reference:** the scan list, tier definitions, YAML template and rules are in `references/wrap-up-ref.md` § Step 6.
 
 ---
 
@@ -167,41 +128,21 @@ If no worktrees exist, skip this step silently.
 
 **8. Capture session learnings (LEARNINGS.md)**
 
-Prompt the user with one direct question:
+Ask the user one direct question:
 
 > "What was the most surprising, unexpected, or instructive thing about this session? (One sentence — skip if nothing stood out.)"
 
-If the user provides a learning, append to `LEARNINGS.md` at project root (create if missing):
-
-```markdown
-# Learnings
-
-Insights, surprises, and lessons accumulated across sessions. Most recent first.
-This file feeds the teaching/sharing portfolio — the raw material for explaining
-*why* things are the way they are.
-
----
-
-## YYYY-MM-DD — <session feature name>
-
-**Surprise/Lesson:** <user's one-sentence answer>
-
-**Context:** <2-line setup — what we were trying to do>
-
-**Why it matters:** <1-2 lines — what changes about how to approach similar work>
-
----
-```
-
-If the user says "nothing" or "skip", note `LEARNINGS.md: skipped` in the final summary and don't write anything.
+If they answer, append an entry to `LEARNINGS.md` at the project root, creating it if missing. If they say "nothing" or "skip", note `LEARNINGS.md: skipped` in the final summary and write nothing.
 
 This is opt-in. Don't force a learning if there isn't one — that creates noise.
+
+> **Reference:** the `LEARNINGS.md` entry template is in `references/wrap-up-ref.md` § Step 8.
 
 **9. Postmortem check (incident detection)**
 
 If Step 1 detected incident signals (revert/hotfix/urgent commits in last 2 days), suggest:
 
-> "Recent activity suggests an incident: <brief — list the signal commits>. 
+> "Recent activity suggests an incident: <brief — list the signal commits>.
 > Consider running `/postmortem <name>` to capture the timeline and root cause before details fade. Skip if these were planned changes."
 
 Don't auto-create the postmortem — let the user decide. They know context the script doesn't.
