@@ -1,11 +1,13 @@
 {
   "name": "claude-toolkit-marketplace",
-  "owner": { "name": "jersgcodes" },
+  "owner": {
+    "name": "jersgcodes"
+  },
   "plugins": [
     {
       "name": "claude-toolkit",
       "source": ".",
-      "description": "Design, planning, research, review, and quality skills for Claude Code — usable on CLI, web, and mobile."
+      "description": "66 skills for design, planning, review, quality and ops, plus one agent. Usable on CLI, web and mobile; CLI-only skills are tagged in their description."
     }
   ]
 }

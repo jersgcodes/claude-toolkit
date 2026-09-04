@@ -1,9 +1,18 @@
 {
   "name": "claude-toolkit",
   "displayName": "Claude Toolkit",
-  "description": "Design, planning, research, review, and quality skills for Claude Code — usable on CLI, web, and mobile. Some skills are CLI-only (tagged in their description).",
-  "version": "0.1.0",
-  "author": { "name": "Jer" },
-  "keywords": ["design", "review", "planning", "quality", "research", "architecture"],
+  "description": "66 skills for design, planning, review, quality and ops, plus one agent. Design skills carry the craft bar with them and degrade honestly when the private design-system checkout is absent. Some skills are CLI-only and are tagged in their description.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Jer"
+  },
+  "keywords": [
+    "design",
+    "review",
+    "planning",
+    "quality",
+    "research",
+    "architecture"
+  ],
   "skills": "./skills/"
 }

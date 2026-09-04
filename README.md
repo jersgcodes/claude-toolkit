@@ -1,8 +1,10 @@
 # Claude Toolkit
 
-A Claude Code **plugin** of design, planning, research, review, and quality skills — usable on the **CLI, web (claude.ai/code), and mobile**.
+A Claude Code **plugin**: 66 skills for design, planning, review, quality and ops, plus one
+agent. Usable on the CLI, on the web (claude.ai/code) and on mobile.
 
-Skills use the progressive-disclosure pattern: a lean `SKILL.md` body plus on-demand `references/` files, so they stay light in context and load detail only when needed.
+Skills use progressive disclosure — a lean `SKILL.md` body plus `references/` loaded on demand —
+so they stay light in context and pull detail only when a run needs it.
 
 ## Install
 
@@ -11,34 +13,50 @@ Skills use the progressive-disclosure pattern: a lean `SKILL.md` body plus on-de
 /plugin install claude-toolkit
 ```
 
-Then invoke any skill by name (e.g. `/claude-toolkit:arch-review`) or let Claude auto-invoke by description.
+Invoke a skill by name (`/claude-toolkit:arch-review`) or let Claude choose it from the
+description.
 
 ## What's inside
 
 | Family | Skills |
 |---|---|
-| Design | api-design, schema-design, component-design, responsive-design, a11y-audit, visual-mock, motion-pipeline |
-| Planning | feature-design, spike, decision-record, threat-model |
-| Review & quality | code-quality, complexity, refactor, seams, tdd, review-pr, arch-review |
-| Research & ops | deep-research, subagent-task, mcp-scaffold, mcp-audit, postmortem, wrap-up |
+| Design and front-end | design-review, design-craft-check, motion-check, style-check, a11y-audit, mobile-audit, responsive-design, visual-mock, component-design, ui-diff, brand-identity, motion-pipeline, data-story-check |
+| Planning and architecture | feature-design, api-design, schema-design, arch-review, arch-lesson, decision-record, threat-model, spike, seams |
+| Review and quality | code-quality, complexity, refactor, tdd, test-coverage, diff-review, review-pr, type-check, format, perf |
+| Security | security-check, secrets-scan, deps-audit, leak-audit, scale-audit |
+| Ops and session | wrap-up, status, workspace-status, worktree, checkpoint-all, compact-context, pre-commit, pre-deploy, pre-approve, commit-status, add-cicd, hooks, memory-review, retrospective, postmortem |
+| Research and authoring | strategize, learn, explain, fact-check, subagent-task, mcp-scaffold, mcp-audit, build-mode, add-tasks, agents, skills, stack-detect, fetch-fallback, ux-psych-audit |
 
-Skills tagged **[CLI-only]** in their description depend on a local terminal (git, local hooks) and are no-ops on web/mobile.
+27 skills are tagged **[CLI-only]** in their description: they need a local checkout, git, or
+local hooks, and do nothing useful on web or mobile.
+
+## The design skills and the private design system
+
+`design-review` and `design-craft-check` are two halves that travel differently.
+
+The **numeric floor** is four programs (`check_contrast.py`, `check_system.py`,
+`check_consumers.py`, `check_rendered.py`) that live in a separate, private `design-system`
+repo. They measure a checkout, so off-machine there is nothing for them to measure. The skills
+say `numeric floor not run: no design-system checkout` and continue rather than reporting a
+floor that never ran.
+
+The **bar** is judgement and does travel: `CRAFT-BAR.md` is bundled at
+`skills/design-review/references/CRAFT-BAR.md` as a generated snapshot. It is authored only in
+`design-system`. Refresh it, never edit it here:
+
+```bash
+python3 scripts/sync-design-refs.py           # refresh
+python3 scripts/sync-design-refs.py --check   # exit 1 if the snapshot is stale
+```
 
 ## Platform support
 
 | Component | CLI | Web | Mobile |
 |---|---|---|---|
-| Skills | ✅ | ✅ | ✅ |
-| Agents | ✅ | ✅ | ✅ |
-| Remote MCP servers | ✅ | ✅ | ✅ |
-| Hooks (local automation) | ✅ | — | — |
-
-## Use outside Claude Code (ChatGPT, Codex, other LLMs)
-
-The skills are portable markdown — only Claude Code auto-invokes them, but you can load them
-elsewhere. See **[`exports/`](exports/)**:
-- `chatgpt-knowledge-bundle.md` + `chatgpt-system-instructions.md` → set up a ChatGPT **Custom GPT** or **Project** loaded with all 52 skills.
-- `AGENTS.md` → template for Codex / Cursor / other `AGENTS.md`-based tools.
+| Skills | yes | yes | yes |
+| Agents | yes | yes | yes |
+| Remote MCP servers | yes | yes | yes |
+| Hooks (local automation) | yes | no | no |
 
 ## License
 

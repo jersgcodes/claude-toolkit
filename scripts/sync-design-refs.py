@@ -28,10 +28,10 @@ MANIFEST = {
     "CRAFT-BAR.md": "skills/design-review/references/CRAFT-BAR.md",
 }
 
-# NOT synced, deliberately. data-story/STORY-BAR.md and its worked example quote the
-# sme-survey findings verbatim -- a private, passphrase-gated repo whose whole design is
-# that its content stays encrypted. This plugin is public. Either genericise the rubric
-# at source or ship /data-story-check from a private plugin; do not add it here.
+# NOT synced, deliberately. data-story/STORY-BAR.md and its worked example quote a private
+# client-side-encrypted project's findings verbatim, and this plugin is public. Either
+# genericise the rubric at source or ship /data-story-check from a private plugin. Do not
+# add it here without doing one of those first.
 
 HEADER = """<!--
 GENERATED SNAPSHOT -- DO NOT EDIT.
