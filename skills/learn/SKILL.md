@@ -56,7 +56,17 @@ Write or update `<encyclopedia_dir>/<slug>.md` from that directory's `_TEMPLATE.
   genuinely worth sharing as `share-candidate` — that's the growth/teaching feed, opt-in, not automatic).
 - Add the entry to `<encyclopedia_dir>/_index.md`.
 
-**6. Guided Q&A (does it stick)**
+**6. Guided Q&A — a COMPREHENSION check, not a retrieval test**
+
+> These two get conflated and they are different instruments. Asking minutes after teaching,
+> with the explanation still on screen, measures whether it LANDED. That is retrieval strength
+> at its peak, which `encyclopedia/retrieval-beats-review.md` identifies as the misleading
+> measure. **It is not evidence of storage.** The retrieval test is step 2 of a LATER session,
+> closed book, after a gap.
+>
+> So: run this, and log it as a comprehension check. Never grade it as recall, never let it
+> set an interval, and never enter it into the calibration record. A lesson that is quizzed
+> immediately and scored well has demonstrated nothing except that you explained it clearly.
 
 Ask 2–3 questions that test **understanding and application**, not trivia ("Given property X, why would
 a designer pick fiber A over B for a running shoe?"). **Wait for the learner's answers.** Give Socratic
