@@ -91,7 +91,19 @@ Close the teach with a one-line **canon pointer** from `references/canon.md` for
 
 ---
 
-**5. One exercise + apply-back**
+**5. One exercise + apply-back** — and note there is deliberately NO question round here
+
+> This engine's check is the EXERCISE, done in a real repo and verified at the next review.
+> It is not a set of questions asked at the end of the lesson. Do not import `/learn` step 6
+> into this: questions asked minutes after teaching measure whether the explanation landed,
+> which is retrieval strength at its peak and the misleading measure
+> (`encyclopedia/retrieval-beats-review.md`). Worse, adding them displaces the exercise, which
+> is the thing that produces evidence.
+>
+> Done on 2026-09-05 and caught by Jer, who asked "I thought it was a lesson, how come the
+> quiz is right after?" If the learner cannot do the exercise now (away from their machine),
+> restate it as a from-memory question and leave it OPEN until the next session. Do not
+> substitute a quiz.
 
 - Give a single concrete ~15–30 min thing to inspect/try in a real repo (not a big refactor).
 - **Apply-back:** offer to open a matching task in that project's `TASKS.md` /

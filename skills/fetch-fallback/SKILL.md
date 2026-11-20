@@ -1,8 +1,8 @@
 ---
 name: fetch-fallback
-description: Recover a web page when WebFetch or WebSearch fails, AND avoid misreading one that succeeded. Diagnoses the failure mode first (403 bot-wall, JS-rendered, 404, blocked domain, paywall) then routes to the right recovery; also covers reading state (ticks, crosses, greyed rows) out of comparison tables and pricing cards, where text-only extraction silently reports every option as including everything. Use whenever a fetch errors, returns thin content, or when scraping any table of what is included or supported.
+description: Recover a web page when WebFetch or WebSearch fails, AND avoid misreading one that succeeded. Diagnoses the failure mode first (403 bot-wall, JS-rendered, 404, blocked domain, paywall) then routes to the right recovery; distinguishes a UA gate from a managed anti-bot service (DataDome, Cloudflare bot management) by response header, and maps where the bot perimeter actually runs (robots.txt, llms.txt, sibling hosts, alternate formats) before accepting that a site is closed; also covers reading state (ticks, crosses, greyed rows) out of comparison tables and pricing cards, where text-only extraction silently reports every option as including everything. Use whenever a fetch errors, returns thin content, or when scraping any table of what is included or supported.
 allowed-tools: [Bash, WebFetch, WebSearch, Read, Write]
-version: 0.2.0
+version: 0.3.0
 ---
 
 A failed fetch is not one problem. It is at least six, and they need different fixes. Diagnose
@@ -31,8 +31,33 @@ Compare against what the fetch tool reported. The gap tells you which branch to 
 
 ## Step 2: bot wall or UA gate (403, or tool-only failure)
 
-Fetch with a browser UA via `curl` and parse the HTML yourself. Many government and vendor sites
-serve full SSR HTML to a browser UA and 403 to everything else.
+**First, find out which of the two you are facing, because they take opposite responses.** A UA gate
+is a one-line fix. A managed anti-bot service is a wall you should stop pushing on. The response
+headers name it for free:
+
+```bash
+curl -sS -o /dev/null -D - -A "$UA" --max-time 30 "<URL>" \
+  | grep -i -E '^(HTTP|server|cf-mitigated|cf-ray|x-datadome|x-dd|set-cookie)'
+```
+
+| Header seen | What it is | What works |
+|---|---|---|
+| nothing special, plain 403 | UA / header gate | a browser UA, below. Usually enough |
+| `x-datadome: protected`, `datadome=` cookie | **DataDome** | not a UA problem, and not an IP problem either |
+| `cf-mitigated: challenge`, `__cf_chl` in the body | Cloudflare bot management | a challenge, not a ban |
+| `server: cloudflare` and nothing else | Cloudflare is just the CDN | says nothing about bot policy |
+
+`server: cloudflare` on its own is the trap: it appears on protected and unprotected hosts alike, so
+it is not evidence of anything. Look for the vendor header, not the CDN.
+
+**When it is a managed service, stop escalating browser realism.** Measured on `www.g2.com`
+(DataDome): a plain fetch 403s, a headless stealth browser 403s, and a **headed** stealth browser
+403s too. Once a real browser with a real fingerprint has failed, more realism is not the missing
+ingredient, and neither is a proxy pool - defeating IP rotation is what these services are sold to
+do. Go to Step 2b and map the perimeter instead.
+
+Otherwise, fetch with a browser UA via `curl` and parse the HTML yourself. Many government and vendor
+sites serve full SSR HTML to a browser UA and 403 to everything else.
 
 ```bash
 curl -s -A "$UA" -L --max-time 30 "<URL>" | python3 -c "
@@ -46,6 +71,53 @@ print(re.sub(r'\n\s*\n+','\n',re.sub(r'[ \t]+',' ',html.unescape(t))))
 
 If the project has a hardened version of this, use it rather than rewriting. Example in
 `sme-solution-radar`: `scripts/psg_directory_fetch.py` (GoBusiness 403 bypass).
+
+## Step 2b: map the perimeter before you accept "the site blocks us"
+
+**A bot perimeter is per-host and per-path, not per-site.** This is the highest-yield six minutes in
+the whole skill, and it is almost always skipped, because one 403 feels like a verdict on the domain.
+
+Probe the edges in this order. Each is one `curl`:
+
+1. **`/robots.txt`** - nearly always outside the perimeter, and it names sitemaps and other indexes.
+2. **`/llms.txt`** - increasingly published for AI assistants, usually unprotected, and it advertises
+   machine-consumable endpoints you would not have guessed. Check it even if you have never seen one.
+3. **Sibling hosts.** `learn.` `docs.` `blog.` `help.` `api.` and country hosts. Protection is bought
+   per property.
+4. **The same resource in another format.** `.json` may be shut while `.svg`, `.png`, `.xml` or `.csv`
+   beside it is open.
+5. **The endpoints robots.txt and llms.txt just named** - do not assume they inherit the openness of
+   the file that named them.
+
+> Measured case: on `g2.com`, `www.g2.com/categories/*` is 403 (DataDome) while `learn.g2.com` is
+> 200; `robots.txt` and `llms.txt` are 200 while the sitemaps they name are 403; and
+> `.../grids.json` is 403 while `.../grids.svg` beside it is 200. "The site blocks us" was never
+> true. Mapping the wall cost six requests and turned a dead end into a working route.
+
+**When the data endpoint is blocked but a rendering endpoint is not**, you may still be able to
+answer a *closed* question by diffing renderings under a parameter, even when the rendering is
+unreadable. Same case: the SVG is anonymised, with no names or slugs in it, but `?focus[]=<slug>`
+changes the bytes only when that product is actually plotted. You give up enumeration and keep
+membership.
+
+**This pattern has one failure mode and it is severe.** If the "nothing changed" case ever stops
+holding - the site adds a legend, a not-found marker, a timestamp - then *everything* reads as a
+hit, and a run of thousands of false positives looks exactly like a successful run. So:
+
+- **Prove the null case every run**, with a deliberately non-existent identifier, and abort if
+  focusing a thing that cannot exist changes the output.
+- **Check determinism**: fetch the same URL three times and compare hashes before trusting any diff.
+- **Watch for embedded dates.** Rendered assets often bake in today's date, so every hash changes at
+  midnight. Re-fetch baselines at the end of a long run and mark the batch provisional if they moved.
+
+### The line this does not cross
+
+Reading published, unauthenticated endpoints - including ones the site advertises in `llms.txt` - is
+ordinary retrieval. Solving or bypassing a challenge is not, and neither is **claiming to be
+somebody else's crawler**. Setting a `GPTBot` or `ClaudeBot` user agent to inherit an allowlist is a
+false identity claim to the site and misattributes your traffic to that operator; do not do it, and
+say plainly that you will not. If the sanctioned endpoint is blocked to you, the honest routes are
+to ask the site for access or to pay for their published data product.
 
 ## Step 3: JS-rendered page
 
